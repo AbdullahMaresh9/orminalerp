@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Orminal ERP">
+  <defs>
+    <linearGradient id="om-g1" x1="60" y1="90" x2="440" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1f7fea"/>
+      <stop offset="1" stop-color="#0f4bab"/>
+    </linearGradient>
+    <linearGradient id="om-g2" x1="150" y1="360" x2="430" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#29a9f3"/>
+      <stop offset="1" stop-color="#4aa3f8"/>
+    </linearGradient>
+    <linearGradient id="om-bar" x1="0" y1="360" x2="0" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f60d4"/>
+      <stop offset="1" stop-color="#29a9f3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- circular sweep (the O) -->
+  <path d="M256 84c95 0 172 77 172 172 0 20-3.4 39-9.7 57l-38-16c4.7-13 7.2-26.8 7.2-41 0-72-58.6-130.6-130.6-130.6S126 184 126 256s58.6 130.6 130.6 130.6c14.6 0 28.6-2.4 41.7-6.9l14.6 38.6c-18.3 6.6-38 10.2-58.6 10.2-95 0-172-77-172-172S161 84 256 84z" fill="url(#om-g1)"/>
+
+  <!-- ascending bars -->
+  <rect x="150" y="300" width="34" height="86" rx="8" fill="url(#om-bar)"/>
+  <rect x="205" y="256" width="34" height="130" rx="8" fill="url(#om-bar)"/>
+  <rect x="260" y="212" width="34" height="174" rx="8" fill="url(#om-bar)"/>
+
+  <!-- upward growth arrow (the alpha / K stroke) -->
+  <path d="M150 372 L300 250 L360 300 L430 150" stroke="url(#om-g2)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M392 132 L446 138 L432 190 Z" fill="#29a9f3"/>
+
+  <!-- rising leg -->
+  <path d="M330 300 L392 260 L392 400 L358 400 Z" fill="url(#om-g1)" opacity="0.92"/>
+
+  <!-- accent bubbles -->
+  <circle cx="404" cy="96" r="12" fill="#4aa3f8"/>
+  <circle cx="438" cy="120" r="8" fill="#84c2fd"/>
+  <circle cx="420" cy="150" r="6" fill="#29a9f3"/>
+</svg>

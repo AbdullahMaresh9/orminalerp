@@ -32,7 +32,7 @@ export async function generateMetadata({
     keywords: ar
       ? ['نظام ERP', 'برنامج محاسبة', 'إدارة مخزون', 'نقاط بيع', 'Orminal']
       : ['ERP system', 'accounting software', 'inventory', 'POS', 'Orminal'],
-    icons: { icon: '/icon.png' },
+    icons: { icon: '/icon.svg' },
     alternates: {
       canonical: `/${locale}`,
       languages: { ar: '/ar', en: '/en' },
@@ -42,11 +42,11 @@ export async function generateMetadata({
       description,
       url: `/${locale}`,
       siteName: 'Orminal ERP',
-      images: [{ url: '/og.png', width: 1200, height: 630 }],
+      images: [{ url: '/og.svg', width: 1200, height: 630 }],
       locale: ar ? 'ar_YE' : 'en_US',
       type: 'website',
     },
-    twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og.svg'] },
   };
 }
 
