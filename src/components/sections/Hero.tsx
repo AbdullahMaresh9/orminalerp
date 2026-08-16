@@ -62,7 +62,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         ))}
       </div>
 
-      <motion.div style={{ opacity: fade }} className="container-page relative z-10 pb-24 pt-20 text-center sm:pt-24">
+      <motion.div style={{ opacity: fade }} className="container-page relative z-10 pb-16 pt-14 text-center sm:pb-24 sm:pt-24">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.08 }}
-          className="mx-auto mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.22] text-white sm:text-5xl lg:text-6xl"
+          className="mx-auto mt-6 max-w-4xl font-display text-[1.75rem] font-extrabold leading-[1.28] text-white xs:text-3xl sm:text-5xl sm:leading-[1.22] lg:text-6xl"
         >
           {dict.hero.titleLead} <span className="gradient-text">{dict.hero.titleHighlight}</span>{' '}
           {dict.hero.titleTail}
@@ -96,15 +96,18 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.24 }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+          className="mx-auto mt-9 flex w-full max-w-sm flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center"
         >
-          <Link href={`/${locale}/trial`} className="btn bg-white px-6 text-brand-800 hover:bg-sky2 hover:text-white">
+          <Link
+            href={`/${locale}/trial`}
+            className="btn justify-center bg-white px-6 text-brand-800 hover:bg-sky2 hover:text-white"
+          >
             {dict.hero.ctaTrial}
             <ArrowRight className="h-4 w-4 rtl:rotate-180" />
           </Link>
           <Link
             href={`/${locale}/login`}
-            className="btn border border-white/25 bg-white/10 px-6 text-white backdrop-blur hover:bg-white/20"
+            className="btn justify-center border border-white/25 bg-white/10 px-6 text-white backdrop-blur hover:bg-white/20"
           >
             <LogIn className="h-4 w-4" />
             {dict.hero.ctaLogin}
@@ -116,7 +119,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.32 }}
-          className="mx-auto mt-14 max-w-4xl"
+          className="mx-auto mt-10 max-w-4xl sm:mt-14"
         >
           <DashboardPreview locale={locale} />
         </motion.div>

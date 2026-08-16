@@ -5,6 +5,9 @@ const config: Config = {
   content: ['./src/**/*.{ts,tsx,mdx}'],
   theme: {
     extend: {
+      screens: {
+        xs: '420px',
+      },
       fontFamily: {
         sans: ['var(--font-ui)', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'var(--font-ui)', 'sans-serif'],
