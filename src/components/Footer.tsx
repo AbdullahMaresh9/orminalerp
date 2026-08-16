@@ -48,9 +48,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   ];
 
   return (
-    <footer className="mt-24 bg-brand-950 text-white">
-      <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-5">
+    <footer className="border-t border-white/10 bg-brand-950 text-white">
+      <div className="container-page grid gap-10 py-14 sm:gap-12 sm:py-16 md:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-5 md:col-span-2 lg:col-span-1">
           <Logo locale={locale} variant="inverse" />
           <p className="max-w-sm text-sm leading-relaxed text-white/70">{dict.footer.about}</p>
           <div className="flex items-center gap-2">

@@ -72,7 +72,7 @@ export default async function LocaleLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="flex min-h-[100dvh] flex-col">
         <Providers>
           <a
             href="#main"
@@ -81,7 +81,9 @@ export default async function LocaleLayout({
             {locale === 'ar' ? 'تجاوز إلى المحتوى' : 'Skip to content'}
           </a>
           <Navbar locale={locale} dict={dict} />
-          <main id="main">{children}</main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
           <Footer locale={locale} dict={dict} />
         </Providers>
       </body>

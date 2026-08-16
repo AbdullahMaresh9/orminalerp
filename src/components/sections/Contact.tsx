@@ -30,7 +30,7 @@ export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) 
   }
 
   return (
-    <section id="contact" className="container-page scroll-mt-24 pb-4 pt-20 sm:pt-24">
+    <section id="contact" className="container-page scroll-mt-24 pb-16 pt-20 sm:pb-24 sm:pt-24">
       <div className="overflow-hidden rounded-3xl border shadow-card" style={{ background: 'var(--surface)' }}>
         <div className="grid gap-0 lg:grid-cols-[1.15fr_1fr]">
           <div className="p-8 sm:p-10">
