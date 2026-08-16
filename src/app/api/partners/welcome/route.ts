@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Orminal ERP <onboarding@resend.dev>';
-const TEAM = process.env.CONTACT_TO_EMAIL ?? 'hello@orminal-erp.com';
+const TEAM = process.env.CONTACT_TO_EMAIL ?? 'orminalerp@gmail.com';
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://orminal-erp.vercel.app';
 
 /** Welcome email for a newly registered partner, plus an internal notification. */

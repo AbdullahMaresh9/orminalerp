@@ -94,14 +94,14 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <ul className="space-y-3 text-sm text-white/70">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-sky2" />
-                <a href="mailto:hello@orminal-erp.com" className="transition hover:text-sky2">
-                  hello@orminal-erp.com
+                <a href="mailto:orminalerp@gmail.com" className="transition hover:text-sky2">
+                  orminalerp@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2" dir="ltr">
                 <Phone className="h-4 w-4 text-sky2" />
-                <a href="tel:+967700000000" className="transition hover:text-sky2">
-                  +967 700 000 000
+                <a href="tel:+967737719291" className="transition hover:text-sky2">
+                  +967 737 719 291
                 </a>
               </li>
               <li className="flex items-center gap-2">

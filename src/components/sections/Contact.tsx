@@ -96,14 +96,14 @@ export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) 
                   <Mail className="mt-0.5 h-4 w-4 text-sky2" />
                   <span>
                     <span className="block text-xs text-white/60">{dict.contact.emailUs}</span>
-                    hello@orminal-erp.com
+                    orminalerp@gmail.com
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 text-sky2" />
                   <span>
                     <span className="block text-xs text-white/60">{dict.contact.callUs}</span>
-                    <span dir="ltr">+967 700 000 000</span>
+                    <span dir="ltr">+967 737 719 291</span>
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

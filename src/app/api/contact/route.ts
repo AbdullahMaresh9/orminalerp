@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Orminal ERP <onboarding@resend.dev>';
-const TO = process.env.CONTACT_TO_EMAIL ?? 'hello@orminal-erp.com';
+const TO = process.env.CONTACT_TO_EMAIL ?? 'orminalerp@gmail.com';
 
 function escapeHtml(value: unknown): string {
   return String(value ?? '')
