@@ -442,7 +442,7 @@ const en: Dict = {
   about: {
     kicker: 'About',
     title: 'About Orminal',
-    body: 'Orminal is a software company focused on ERP solutions. We build Arabic-first systems to global standards, combining accounting rigor with ease of use and fast deployment.',
+    body: 'Orminal ERP is an integrated, cloud-based Enterprise Resource Planning (ERP) system, meticulously designed to meet the demands of fast-paced, modern businesses. The system combines powerful performance, flexible customization, and user-friendliness to give you complete centralized control over all your operational processes alongside accurate reporting—from accounting, inventory, sales, purchasing, and point of sale (POS), all the way to human resources management and analytics—within a single, secure platform that scales with your business growth.',
     point1: 'Arabic first',
     point1Body: 'Full RTL interfaces with accurate Arabic invoices and reports.',
     point2: 'Cloud & secure',
