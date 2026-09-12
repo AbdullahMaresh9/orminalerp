@@ -203,7 +203,7 @@ const ar = {
     point2: 'سحابي وآمن',
     point2Body: 'تشفير للبيانات، نسخ احتياطي لحظي، ونظام صلاحيات دقيق يضمن أمان مؤسستك.',
     point3: 'قابل للتوسع',
-    point3Body: 'بنية مرنة تتيح لك التوسع من فرع  إلى شبكة فروع ومستودعات مترابطة وفعالة .',
+    point3Body: 'بنية مرنة تتيح لك التوسع بدأ من فرع وصولاً إلى شبكة فروع ومستودعات مترابطة وفعالة .',
   },
   footer: {
     about:
@@ -448,7 +448,7 @@ const en: Dict = {
     point2: 'Cloud & secure',
     point2Body: 'Data encryption, real-time backups, and a granular access control system that ensures the security of your organization.',
     point3: 'Built to scale',
-    point3Body: 'A flexible architecture that allows you to scale from a single branch to an interconnected, efficient network of branches and warehouses.',
+    point3Body: 'A flexible architecture that allows you to scale start from a single branch to an interconnected, efficient network of branches and warehouses.',
   },
   footer: {
     about:
