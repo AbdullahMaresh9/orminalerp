@@ -43,7 +43,7 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <ul className="mt-8 grid grid-cols-2 gap-6">
                 {[
                   ['%100', locale === 'ar' ? 'تحكم مركزي' : 'Centralized Control'],
-                  ['+8', locale === 'ar' ? +'وحدات تشغيلية' : 'Operational Modules'],
+                  ['+8', locale === 'ar' ? 'وحدات تشغيلية' : 'Operational Modules'],
                   ['%99.9', locale === 'ar' ? 'توافر سحابي' : ' Cloud Uptime'],
                   ['+12', locale === 'ar' ? 'قطاعات مدعومة' : 'Supported Industries'],
                 ].map(([value, label]) => (
