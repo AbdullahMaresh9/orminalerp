@@ -203,7 +203,7 @@ const ar = {
     point2: 'سحابي وآمن',
     point2Body: 'تشفير للبيانات، نسخ احتياطي لحظي، ونظام صلاحيات دقيق يضمن أمان مؤسستك.',
     point3: 'قابل للتوسع',
-    point3Body: 'بنية مرنة تتيح لك البدء بفرع واحد وتوسّع إلى شبكة فروع ومستودعات.',
+    point3Body: 'بنية مرنة تتيح لك التوسع من فرع  إلى شبكة فروع ومستودعات مترابطة وفعالة .',
   },
   footer: {
     about:
@@ -443,12 +443,12 @@ const en: Dict = {
     kicker: 'About',
     title: 'About Orminal',
     body: 'Orminal ERP is an integrated, cloud-based Enterprise Resource Planning (ERP) system, meticulously designed to meet the demands of fast-paced, modern businesses. The system combines powerful performance, flexible customization, and user-friendliness to give you complete centralized control over all your operational processes alongside accurate reporting—from accounting, inventory, sales, purchasing, and point of sale (POS), all the way to human resources management and analytics—within a single, secure platform that scales with your business growth.',
-    point1: 'Arabic first',
-    point1Body: 'Full RTL interfaces with accurate Arabic invoices and reports.',
+    point1: 'Bilingual Support',
+    point1Body: 'Seamless interfaces with full support for Arabic (RTL) and English (LTR), alongside accurate reports and invoices.',
     point2: 'Cloud & secure',
-    point2Body: 'Encrypted data, automated backups and granular permissions.',
+    point2Body: 'Data encryption, real-time backups, and a granular access control system that ensures the security of your organization.',
     point3: 'Built to scale',
-    point3Body: 'Start with one branch and grow into a network of branches and warehouses.',
+    point3Body: 'A flexible architecture that allows you to scale from a single branch to an interconnected, efficient network of branches and warehouses.',
   },
   footer: {
     about:
