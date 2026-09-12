@@ -40,7 +40,7 @@ export function Knowledge({ locale, dict }: { locale: Locale; dict: Dictionary }
           {dict.knowledge.kicker}
         </p>
         <h2 className="section-title mt-4">
-          {dict.knowledge.title} <span className="text-brand-600 dark:text-brand-300">ORMINAL</span>
+          {dict.knowledge.title} <span className="text-brand-600 dark:text-brand-300">Orminal ERP</span>
         </h2>
         <p className="muted mt-3 text-base leading-relaxed">{dict.knowledge.subtitle}</p>
 
