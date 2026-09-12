@@ -192,7 +192,7 @@ const ar = {
     emailUs: 'راسلنا',
     callUs: 'اتصل بنا',
     visitUs: 'زُرنا',
-    address: 'صنعاء، الجمهورية اليمنية',
+    address: 'اليمن',
   },
   about: {
     kicker: 'حولنا',
@@ -437,7 +437,7 @@ const en: Dict = {
     emailUs: 'Email us',
     callUs: 'Call us',
     visitUs: 'Visit us',
-    address: "Sana'a, Republic of Yemen",
+    address: "Yemen",
   },
   about: {
     kicker: 'About',
