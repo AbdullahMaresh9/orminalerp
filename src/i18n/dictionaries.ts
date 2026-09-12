@@ -452,7 +452,7 @@ const en: Dict = {
   },
   footer: {
     about:
-      'Orminal ERP is an integrated cloud system for accounting, inventory, sales and HR — built with deep expertise and high-quality performance.',
+      'Orminal ERP is an integrated, cloud-based Enterprise Resource Planning (ERP) and business management system covering accounting, inventory, sales, and human resources, expertly built to deliver high-quality performance.',
     links: 'Links',
     company: 'Company',
     contactTitle: 'Contact',
