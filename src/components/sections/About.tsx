@@ -37,15 +37,15 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <div className="relative">
               <p className="font-display text-2xl font-extrabold leading-snug">
                 {locale === 'ar'
-                  ? 'نبني برمجيات تُشغّل أعمالًا حقيقية كل يوم'
-                  : 'We build software that runs real businesses every day'}
+                  ? 'نظام رقمي واحد.. يدير أدق تفاصيل مؤسستك بذكاء'
+                  : 'A single digital system.. managing the finest details of your organization by intelligently'}
               </p>
               <ul className="mt-8 grid grid-cols-2 gap-6">
                 {[
-                  ['+1,250', locale === 'ar' ? 'عميل نشط' : 'active clients'],
-                  ['+18', locale === 'ar' ? 'قطاع أعمال' : 'business sectors'],
-                  ['+40', locale === 'ar' ? 'وحدة وظيفية' : 'functional modules'],
-                  ['+120', locale === 'ar' ? 'شريك معتمد' : 'certified partners'],
+                  ['%100', locale === 'ar' ? 'تحكم مركزي' : 'Centralized Control'],
+                  ['+8', locale === 'ar' ? +'وحدات تشغيلية' : 'Operational Modules'],
+                  ['%99.9', locale === 'ar' ? 'توافر سحابي' : ' Cloud Uptime'],
+                  ['+12', locale === 'ar' ? 'قطاعات مدعومة' : 'Supported Industries'],
                 ].map(([value, label]) => (
                   <li key={label}>
                     <p className="font-display text-3xl font-extrabold text-sky2">{value}</p>
