@@ -158,7 +158,7 @@ const ar = {
     passwordMismatch: 'كلمتا المرور غير متطابقتين',
     mustAgree: 'يجب الموافقة على الشروط والأحكام',
     notConfigured:
-      'خدمة الحسابات غير مهيأة بعد على هذه النسخة. أضف مفاتيح Supabase في متغيرات البيئة لتفعيل التسجيل والدخول.',
+      ' النظام قيد التطوير حالياً ، وخدمة تسجيل الدخول ستكون متاحة قريباً.',
     genericError: 'حدث خطأ غير متوقع، حاول مرة أخرى.',
     working: 'جارٍ التنفيذ…',
     dashboardTitle: 'لوحة الشريك',
@@ -403,7 +403,7 @@ const en: Dict = {
     passwordMismatch: 'Passwords do not match',
     mustAgree: 'You must accept the terms',
     notConfigured:
-      'Accounts are not configured on this deployment yet. Add the Supabase environment variables to enable sign-up and sign-in.',
+      'The system is currently under development, and the login service will be available soon.',
     genericError: 'Something went wrong, please try again.',
     working: 'Working…',
     dashboardTitle: 'Partner dashboard',
