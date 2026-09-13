@@ -27,7 +27,11 @@ const socials = {
   x: 'M17.53 3H21l-7.19 8.21L21.5 21h-6.3l-4.6-6.02L5.2 21H2l7.5-8.57L2.2 3h6.3l4.28 5.66L17.53 3Z',
   facebook:
     'M13.5 9H16V6h-2.5C11.57 6 10 7.57 10 9.5V11H8v3h2v7h3v-7h2.2l.8-3H13v-1.2c0-.44.36-.8.5-.8Z',
+  whatsapp:
+    'M17.47 14.38c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.19.29-.75.93-.92 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.32-1.44-.86-.76-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.14-.14.33-.36.5-.55.17-.19.22-.32.34-.53.11-.21.06-.4-.03-.55-.09-.15-.65-1.57-.89-2.14-.19-.46-.39-.43-.55-.44l-.47-.01c-.16 0-.42.06-.65.31-.22.25-.86.84-.86 2.05 0 1.21.87 2.38 1 2.55.12.17 1.68 2.58 4.15 3.52 2.47.94 2.47.63 2.92.59.45-.04 1.45-.59 1.66-1.16.2-.57.2-1.06.14-1.16-.06-.1-.24-.16-.53-.31ZM12.03 2C6.5 2 2 6.48 2 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.36A9.96 9.96 0 0 0 12.03 22C17.55 22 22 17.52 22 12S17.55 2 12.03 2Zm0 18.06c-1.65 0-3.24-.44-4.6-1.28l-.33-.2-3.24.9.87-3.16-.22-.33a8.03 8.03 0 0 1-1.25-4.29c0-4.44 3.62-8.06 8.08-8.06 4.45 0 8.07 3.62 8.07 8.06 0 4.45-3.62 8.06-8.08 8.06Z',
 };
+
+const WHATSAPP_URL = 'https://wa.me/message/4EVAEMG6NEH7D1';
 
 export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const year = new Date().getFullYear();
@@ -57,6 +61,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <Social href="https://www.linkedin.com/in/orminalerp" label="LinkedIn" path={socials.linkedin} />
             <Social href="https://x.com" label="X" path={socials.x} />
             <Social href="https://www.facebook.com" label="Facebook" path={socials.facebook} />
+            <Social href={WHATSAPP_URL} label="WhatsApp" path={socials.whatsapp} />
           </div>
         </div>
 
@@ -102,6 +107,19 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 <Phone className="h-4 w-4 text-sky2" />
                 <a href="tel:+967737719291" className="transition hover:text-sky2">
                   +967 737 719 291
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-sky2" aria-hidden>
+                  <path d={socials.whatsapp} />
+                </svg>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-sky2"
+                >
+                  WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-2">
