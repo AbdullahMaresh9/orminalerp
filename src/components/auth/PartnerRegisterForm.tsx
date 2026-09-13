@@ -391,11 +391,10 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
 
       {message && (
         <p
-          className={`rounded-xl p-3 text-xs font-semibold ${
-            status === 'error'
+          className={`rounded-xl p-3 text-xs font-semibold ${status === 'error'
               ? 'bg-red-50 text-red-600 dark:bg-red-500/10'
               : 'bg-accent-50 text-accent-600 dark:bg-accent-500/10'
-          }`}
+            }`}
         >
           {message}
         </p>
