@@ -10,11 +10,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: locale === 'ar' ? 'تسجيل الدخول — Orminal ERP' : 'Sign in — Orminal ERP' };
 }
 
-export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function LoginPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ redirect?: string }>;
+}) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale = raw as Locale;
   const dict = getDictionary(locale);
+
+  // Only honor same-locale internal paths to avoid open-redirects.
+  const { redirect } = await searchParams;
+  const redirectTo =
+    redirect && redirect.startsWith(`/${locale}/`) ? redirect : `/${locale}/partners/dashboard`;
 
   return (
     <AuthShell
@@ -23,7 +34,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
       body={dict.auth.loginBody}
       bullets={[dict.about.point1Body, dict.about.point2Body, dict.about.point3Body]}
     >
-      <LoginForm locale={locale} dict={dict} redirectTo={`/${locale}/partners/dashboard`} />
+      <LoginForm locale={locale} dict={dict} redirectTo={redirectTo} />
     </AuthShell>
   );
 }
