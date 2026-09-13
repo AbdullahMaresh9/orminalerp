@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { locales, swapLocalePath, type Locale } from '@/i18n/config';
 
@@ -19,28 +19,6 @@ export function LocaleSwitch({
   const pathname = usePathname() || `/${locale}`;
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-
-    function handlePointerDown(event: PointerEvent) {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') setOpen(false);
-    }
-
-    document.addEventListener('pointerdown', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [open]);
 
   function choose(next: Locale) {
     setOpen(false);
@@ -55,7 +33,7 @@ export function LocaleSwitch({
       : 'hover:border-brand-400 hover:text-brand-600';
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative" onMouseLeave={() => setOpen(false)}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -73,7 +51,7 @@ export function LocaleSwitch({
       {open && (
         <ul
           role="listbox"
-          className="absolute end-0 top-full z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
+          className="absolute end-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
           style={{ background: 'var(--surface)' }}
         >
           {locales.map((code) => (
