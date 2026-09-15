@@ -32,7 +32,7 @@ export async function generateMetadata({
     keywords: ar
       ? ['نظام ERP', 'برنامج محاسبة', 'إدارة مخزون', 'نقاط بيع', 'Orminal']
       : ['ERP system', 'accounting software', 'inventory', 'POS', 'Orminal'],
-    icons: { icon: '/icon.svg' },
+    icons: { icon: '/logo.png' },
     alternates: {
       canonical: `/${locale}`,
       languages: { ar: '/ar', en: '/en' },

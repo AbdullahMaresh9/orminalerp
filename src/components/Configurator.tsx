@@ -1,35 +1,19 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, CircleCheck, Minus, Plus, Ticket } from 'lucide-react';
+import { ArrowRight, CircleCheck, Minus, Plus, Ticket } from 'lucide-react';
 import { Icon } from '@/components/Icon';
+import { PaymentMethods, type CheckoutMethod } from '@/components/checkout/PaymentMethods';
 import { addons, discountCodes, moduleGroups, unitPrice } from '@/content/modules';
 import { plans, type Cycle, type PlanId } from '@/content/pricing';
+import { baseIncluded, type CheckoutConfig } from '@/content/quote';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 
 type Counts = Record<'users' | 'branches' | 'warehouses' | 'employees', number>;
-
-const baseIncluded: Record<PlanId, string[]> = {
-  starter: ['gl', 'stock', 'sales'],
-  professional: ['gl', 'stock', 'sales', 'banks', 'ar', 'purchases', 'pricing'],
-  enterprise: [
-    'gl',
-    'stock',
-    'sales',
-    'banks',
-    'ar',
-    'ap',
-    'purchases',
-    'pricing',
-    'pos',
-    'crm',
-    'payroll',
-    'attendance',
-  ],
-};
 
 export function Configurator({
   locale,
@@ -49,7 +33,16 @@ export function Configurator({
   const [code, setCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [codeState, setCodeState] = useState<'idle' | 'ok' | 'bad'>('idle');
-  const [placed, setPlaced] = useState(false);
+
+  const router = useRouter();
+  const [step, setStep] = useState<'configure' | 'paying'>('configure');
+  const [methods, setMethods] = useState<CheckoutMethod[]>([]);
+  const [payAmount, setPayAmount] = useState(0);
+  const [payCurrency, setPayCurrency] = useState('USD');
+  const [isTest, setIsTest] = useState(false);
+  const [loadingMethods, setLoadingMethods] = useState(false);
+  const [selectingId, setSelectingId] = useState<number | null>(null);
+  const [checkoutError, setCheckoutError] = useState('');
 
   const plan = plans.find((p) => p.id === planId) ?? plans[0];
   const included = baseIncluded[planId];
@@ -90,7 +83,96 @@ export function Configurator({
     }
   }
 
+  function buildConfig(): CheckoutConfig {
+    return { planId, cycle, selected, counts, code: codeState === 'ok' ? code : '' };
+  }
+
+  async function onContinue() {
+    setCheckoutError('');
+    setLoadingMethods(true);
+    try {
+      const res = await fetch('/api/checkout/methods', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ config: buildConfig() }),
+      });
+      if (res.status === 401) {
+        const back = `/${locale}/pricing/configure?plan=${planId}&cycle=${cycle}`;
+        router.push(`/${locale}/login?redirect=${encodeURIComponent(back)}`);
+        return;
+      }
+      if (!res.ok) {
+        setCheckoutError(dict.checkout.methodsError);
+        return;
+      }
+      const data = (await res.json()) as {
+        amount: number;
+        currency: string;
+        isTest: boolean;
+        methods: CheckoutMethod[];
+      };
+      setMethods(data.methods);
+      setPayAmount(data.amount);
+      setPayCurrency(data.currency);
+      setIsTest(data.isTest);
+      setStep('paying');
+    } catch {
+      setCheckoutError(dict.checkout.methodsError);
+    } finally {
+      setLoadingMethods(false);
+    }
+  }
+
+  async function payWith(paymentMethodId: number) {
+    setSelectingId(paymentMethodId);
+    setCheckoutError('');
+    try {
+      const res = await fetch('/api/checkout/execute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ config: buildConfig(), paymentMethodId, locale }),
+      });
+      if (!res.ok) {
+        setCheckoutError(dict.checkout.executeError);
+        setSelectingId(null);
+        return;
+      }
+      const data = (await res.json()) as { paymentUrl: string };
+      // In the v0 preview the app runs inside a cross-origin iframe, so open the
+      // gateway in a new tab; otherwise navigate the current tab.
+      if (window.self !== window.top) {
+        window.open(data.paymentUrl, '_blank', 'noopener');
+        setSelectingId(null);
+      } else {
+        window.location.href = data.paymentUrl;
+      }
+    } catch {
+      setCheckoutError(dict.checkout.executeError);
+      setSelectingId(null);
+    }
+  }
+
   const cycleSuffix = cycle === 'annual' ? dict.configurator.perUnitYear : dict.configurator.perUnitMonth;
+
+  if (step === 'paying') {
+    return (
+      <PaymentMethods
+        locale={locale}
+        dict={dict}
+        amount={payAmount}
+        currency={payCurrency}
+        methods={methods}
+        onSelect={payWith}
+        selectingId={selectingId}
+        onBack={() => {
+          setStep('configure');
+          setCheckoutError('');
+        }}
+        error={checkoutError}
+        isTest={isTest}
+      />
+    );
+  }
 
   return (
     <div className="pb-24">
@@ -322,17 +404,20 @@ export function Configurator({
             </div>
             <p className="text-[11px] muted">{dict.pricing.taxNote}</p>
 
-            {placed ? (
-              <p className="rounded-xl bg-accent-50 p-3 text-xs font-semibold text-accent-600 dark:bg-accent-500/10">
-                <Check className="me-1 inline h-3.5 w-3.5" />
-                {dict.configurator.checkoutDone}
+            {checkoutError && (
+              <p className="rounded-xl bg-red-50 p-3 text-xs font-semibold text-red-600 dark:bg-red-500/10">
+                {checkoutError}
               </p>
-            ) : (
-              <button type="button" onClick={() => setPlaced(true)} className="btn-primary w-full">
-                {dict.configurator.continue}
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </button>
             )}
+            <button
+              type="button"
+              onClick={onContinue}
+              disabled={loadingMethods}
+              className="btn-primary w-full disabled:opacity-60"
+            >
+              {loadingMethods ? dict.checkout.preparing : dict.configurator.continue}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+            </button>
 
             <Link href={`/${locale}#pricing`} className="block text-center text-xs font-semibold muted link-quiet">
               {dict.configurator.backToPricing}

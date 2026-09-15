@@ -54,7 +54,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <Logo locale={locale} variant="inverse" />
           <p className="max-w-sm text-sm leading-relaxed text-white/70">{dict.footer.about}</p>
           <div className="flex items-center gap-2">
-            <Social href="https://www.linkedin.com" label="LinkedIn" path={socials.linkedin} />
+            <Social href="https://www.linkedin.com/in/orminalerp" label="LinkedIn" path={socials.linkedin} />
             <Social href="https://x.com" label="X" path={socials.x} />
             <Social href="https://www.facebook.com" label="Facebook" path={socials.facebook} />
           </div>

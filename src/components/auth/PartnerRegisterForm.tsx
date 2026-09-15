@@ -171,13 +171,6 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
-      {!supabaseConfigured && (
-        <p className="flex items-start gap-2 rounded-xl border border-amber-400/40 bg-amber-50 p-3 text-xs font-semibold text-amber-700 dark:bg-amber-500/10">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-          {dict.auth.notConfigured}
-        </p>
-      )}
-
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="companyName">
@@ -398,11 +391,10 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
 
       {message && (
         <p
-          className={`rounded-xl p-3 text-xs font-semibold ${
-            status === 'error'
+          className={`rounded-xl p-3 text-xs font-semibold ${status === 'error'
               ? 'bg-red-50 text-red-600 dark:bg-red-500/10'
               : 'bg-accent-50 text-accent-600 dark:bg-accent-500/10'
-          }`}
+            }`}
         >
           {message}
         </p>

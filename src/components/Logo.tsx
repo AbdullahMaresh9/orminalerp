@@ -21,7 +21,7 @@ export function Logo({
     >
       <span className="relative block h-10 w-10 shrink-0 transition-transform duration-300 group-hover:scale-105">
         <Image
-          src="/orminal-mark.svg"
+          src="/logo.png"
           alt=""
           fill
           sizes="40px"
