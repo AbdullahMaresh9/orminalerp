@@ -12,7 +12,8 @@ export function Logo({
   variant?: 'default' | 'inverse';
   className?: string;
 }) {
-  const inverse = variant === 'inverse';
+  const inverse = variant === 'inverse';يوجد خلل في زر تبديل اللغة قم باصلاحه , حيث انه عند النقر عليه تنسدل قائمة
+ولا استطيع تمرير المؤشر لاختيار اللغة
   return (
     <Link
       href={`/${locale}`}
