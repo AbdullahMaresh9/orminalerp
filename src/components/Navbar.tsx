@@ -59,9 +59,8 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
-        scrolled ? 'shadow-card backdrop-blur-xl' : 'border-transparent'
-      }`}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? 'shadow-card backdrop-blur-xl' : 'border-transparent'
+        }`}
       style={{ background: scrolled ? 'color-mix(in srgb, var(--surface) 88%, transparent)' : 'var(--surface)' }}
     >
       <nav className="container-page flex h-[70px] items-center justify-between gap-3" aria-label="Main">
@@ -107,9 +106,8 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       </nav>
 
       <div
-        className={`overflow-hidden border-t transition-[max-height,opacity] duration-300 lg:hidden ${
-          open ? 'max-h-[32rem] opacity-100' : 'max-h-0 border-transparent opacity-0'
-        }`}
+        className={`overflow-hidden border-t transition-[max-height,opacity] duration-300 lg:hidden ${open ? 'max-h-[32rem] opacity-100' : 'max-h-0 border-transparent opacity-0'
+          }`}
         style={{ background: 'var(--surface)' }}
       >
         <ul className="container-page grid gap-1 py-4">
@@ -124,11 +122,11 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               </Link>
             </li>
           ))}
-          <li className="mt-2 flex items-center gap-2">
+          <li className="mt-1 flex items-center gap-2">
             <LocaleSwitch locale={locale} />
             <ThemeToggle labels={{ theme: dict.nav.theme, light: dict.nav.light, dark: dict.nav.dark }} />
           </li>
-          <li className="mt-2 grid grid-cols-2 gap-2">
+          <li className="mt-6 grid grid-cols-2 gap-2">
             <Link href={`/${locale}/login`} onClick={() => setOpen(false)} className="btn-outline">
               {dict.nav.login}
             </Link>
