@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { locales, swapLocalePath, type Locale } from '@/i18n/config';
 
@@ -19,6 +19,25 @@ export function LocaleSwitch({
   const pathname = usePathname() || `/${locale}`;
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onPointerDown(event: PointerEvent) {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false);
+    }
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
 
   function choose(next: Locale) {
     setOpen(false);
@@ -33,7 +52,7 @@ export function LocaleSwitch({
       : 'hover:border-brand-400 hover:text-brand-600';
 
   return (
-    <div className="relative" onMouseLeave={() => setOpen(false)}>
+    <div className="relative" ref={containerRef}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -51,7 +70,7 @@ export function LocaleSwitch({
       {open && (
         <ul
           role="listbox"
-          className="absolute end-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
+          className="absolute start-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
           style={{ background: 'var(--surface)' }}
         >
           {locales.map((code) => (
@@ -61,7 +80,7 @@ export function LocaleSwitch({
                 role="option"
                 aria-selected={code === locale}
                 onClick={() => choose(code)}
-                className="flex w-full items-center justify-between px-3 py-2.5 text-sm hover:bg-brand-50 dark:hover:bg-white/5"
+                className="flex w-full items-center justify-between px-3 py-2 text-sm hover:bg-brand-50 dark:hover:bg-white/5"
               >
                 <span className="flex items-center gap-2">
                   <span aria-hidden>{flags[code]}</span>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, LogIn, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { LocaleSwitch } from './LocaleSwitch';
@@ -17,6 +17,7 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || '';
   const onHome = pathname === `/${locale}`;
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -26,6 +27,24 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
 
   const home = `/${locale}`;
   const links: NavLink[] = [
@@ -39,9 +58,9 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
-        scrolled ? 'shadow-card backdrop-blur-xl' : 'border-transparent'
-      }`}
+      ref={headerRef}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? 'shadow-card backdrop-blur-xl' : 'border-transparent'
+        }`}
       style={{ background: scrolled ? 'color-mix(in srgb, var(--surface) 88%, transparent)' : 'var(--surface)' }}
     >
       <nav className="container-page flex h-[70px] items-center justify-between gap-3" aria-label="Main">
@@ -87,9 +106,8 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       </nav>
 
       <div
-        className={`overflow-hidden border-t transition-[max-height,opacity] duration-300 lg:hidden ${
-          open ? 'max-h-[32rem] opacity-100' : 'max-h-0 border-transparent opacity-0'
-        }`}
+        className={`overflow-hidden border-t transition-[max-height,opacity] duration-300 lg:hidden ${open ? 'max-h-[32rem] opacity-100' : 'max-h-0 border-transparent opacity-0'
+          }`}
         style={{ background: 'var(--surface)' }}
       >
         <ul className="container-page grid gap-1 py-4">
@@ -97,21 +115,22 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <li key={link.label}>
               <Link
                 href={link.href}
+                onClick={() => setOpen(false)}
                 className="block rounded-xl px-3 py-3 text-sm font-semibold hover:bg-brand-50 dark:hover:bg-white/5"
               >
                 {link.label}
               </Link>
             </li>
           ))}
-          <li className="mt-2 flex items-center gap-2">
+          <li className="mt-1 flex items-center gap-2">
             <LocaleSwitch locale={locale} />
             <ThemeToggle labels={{ theme: dict.nav.theme, light: dict.nav.light, dark: dict.nav.dark }} />
           </li>
-          <li className="mt-2 grid grid-cols-2 gap-2">
-            <Link href={`/${locale}/login`} className="btn-outline">
+          <li className="mt-6 grid grid-cols-2 gap-2">
+            <Link href={`/${locale}/login`} onClick={() => setOpen(false)} className="btn-outline">
               {dict.nav.login}
             </Link>
-            <Link href={`/${locale}/trial`} className="btn-primary">
+            <Link href={`/${locale}/trial`} onClick={() => setOpen(false)} className="btn-primary">
               {dict.nav.tryFree}
             </Link>
           </li>

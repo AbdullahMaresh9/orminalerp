@@ -78,7 +78,7 @@ export function LoginForm({
           <input
             id="login-password"
             type={show ? 'text' : 'password'}
-            dir="ltr"
+            dir={'dir'}
             required
             className="field pe-11"
             value={password}

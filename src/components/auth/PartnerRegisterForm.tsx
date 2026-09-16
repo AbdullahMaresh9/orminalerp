@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { AlertTriangle, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { getSupabaseBrowser, supabaseConfigured } from '@/lib/supabase/client';
+import { Select } from '@/components/ui/Select';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 
@@ -232,19 +233,13 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
           <label className="label" htmlFor="country">
             {dict.auth.country} *
           </label>
-          <select
+          <Select
             id="country"
-            className={inputClass('country')}
             value={values.country}
-            onChange={(e) => set('country', e.target.value)}
-          >
-            <option value="">—</option>
-            {countries.map((c) => (
-              <option key={c.en} value={c.en}>
-                {c[locale]}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => set('country', v)}
+            invalid={Boolean(errors.country)}
+            options={countries.map((c) => ({ value: c.en, label: c[locale] }))}
+          />
           {errors.country && <p className="mt-1 text-xs text-red-500">{errors.country}</p>}
         </div>
         <div>
@@ -264,19 +259,13 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
           <label className="label" htmlFor="activity">
             {dict.auth.activity} *
           </label>
-          <select
+          <Select
             id="activity"
-            className={inputClass('activity')}
             value={values.activity}
-            onChange={(e) => set('activity', e.target.value)}
-          >
-            <option value="">—</option>
-            {activities.map((a) => (
-              <option key={a.en} value={a.en}>
-                {a[locale]}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => set('activity', v)}
+            invalid={Boolean(errors.activity)}
+            options={activities.map((a) => ({ value: a.en, label: a[locale] }))}
+          />
           {errors.activity && <p className="mt-1 text-xs text-red-500">{errors.activity}</p>}
         </div>
         <div>
@@ -392,8 +381,8 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
       {message && (
         <p
           className={`rounded-xl p-3 text-xs font-semibold ${status === 'error'
-              ? 'bg-red-50 text-red-600 dark:bg-red-500/10'
-              : 'bg-accent-50 text-accent-600 dark:bg-accent-500/10'
+            ? 'bg-red-50 text-red-600 dark:bg-red-500/10'
+            : 'bg-accent-50 text-accent-600 dark:bg-accent-500/10'
             }`}
         >
           {message}

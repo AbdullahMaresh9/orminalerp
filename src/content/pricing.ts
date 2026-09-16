@@ -16,7 +16,7 @@ export type Plan = {
 export const plans: Plan[] = [
   {
     id: 'starter',
-    name: { ar: 'Orminal Starter', en: 'Orminal Starter' },
+    name: { ar: 'أورمينال الأساسية', en: 'Orminal Starter' },
     blurb: {
       ar: 'للمنشآت الصغيرة التي تبدأ رحلة الأتمتة بفرع واحد.',
       en: 'For small businesses starting automation with a single branch.',
@@ -26,7 +26,7 @@ export const plans: Plan[] = [
   },
   {
     id: 'professional',
-    name: { ar: 'Orminal Professional', en: 'Orminal Professional' },
+    name: { ar: 'اورمينال الاحترافية', en: 'Orminal Professional' },
     blurb: {
       ar: 'للمنشآت النامية التي تدير فروعًا ومخازن متعددة.',
       en: 'For growing companies running multiple branches and warehouses.',
@@ -37,7 +37,7 @@ export const plans: Plan[] = [
   },
   {
     id: 'enterprise',
-    name: { ar: 'Orminal Enterprise', en: 'Orminal Enterprise' },
+    name: { ar: 'أورمينال للمؤسسات', en: 'Orminal Enterprise' },
     blurb: {
       ar: 'للمجموعات والشركات الكبرى باحتياجات تشغيلية معقدة.',
       en: 'For groups and large enterprises with complex operations.',

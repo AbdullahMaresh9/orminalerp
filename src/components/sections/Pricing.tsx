@@ -67,9 +67,8 @@ export function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) 
                 type="button"
                 onClick={() => setCycle(c)}
                 aria-pressed={cycle === c}
-                className={`relative rounded-full px-5 py-2 text-sm font-bold transition ${
-                  cycle === c ? 'text-white' : 'muted hover:text-brand-600'
-                }`}
+                className={`relative rounded-full px-5 py-2 text-sm font-bold transition ${cycle === c ? 'text-white' : 'muted hover:text-brand-600'
+                  }`}
               >
                 {cycle === c && (
                   <motion.span
@@ -101,9 +100,8 @@ export function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) 
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
                 <div
-                  className={`card card-hover relative flex h-full flex-col border-2 ${toneRing[plan.tone]} ${
-                    plan.popular ? 'lg:-translate-y-3 shadow-lift' : ''
-                  }`}
+                  className={`card card-hover relative flex h-full flex-col border-2 ${toneRing[plan.tone]} ${plan.popular ? 'lg:-translate-y-3 shadow-lift' : ''
+                    }`}
                 >
                   {plan.popular && (
                     <span className="absolute -top-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 chip bg-accent-500 text-white shadow-lift">
@@ -149,7 +147,7 @@ export function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) 
           </div>
 
           <div className="mt-8 overflow-x-auto rounded-2xl border shadow-card">
-            <table className="w-full min-w-[640px] border-collapse text-sm">
+            <table className="w-full min-w-[640px] border-collapse text-sm ">
               <thead className="sticky top-[70px] z-10" style={{ background: 'var(--surface)' }}>
                 <tr>
                   <th className="w-[38%] p-4 text-start text-xs font-bold uppercase tracking-wide muted">
@@ -174,7 +172,7 @@ export function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) 
                       </td>
                     </tr>
                     {group.rows.map((row) => (
-                      <tr key={`${group.id}-${row.label.en}`} className="border-t transition hover:bg-brand-50/50 dark:hover:bg-white/5">
+                      <tr key={`${group.id}-${row.label.en}`} className="border-t transition hover:bg-brand-50/50 dark:hover:bg-white/5 ">
                         <td className="px-4 py-3 font-semibold">{row.label[locale]}</td>
                         {plans.map((plan) => (
                           <td key={plan.id} className="px-4 py-3 text-center">

@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { ArrowRight, CircleCheck } from 'lucide-react';
 import { plans } from '@/content/pricing';
+import { Select } from '@/components/ui/Select';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 
 export function TrialForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [plan, setPlan] = useState('professional');
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -67,13 +69,13 @@ export function TrialForm({ locale, dict }: { locale: Locale; dict: Dictionary }
         <label className="label" htmlFor="t-plan">
           {dict.configurator.plan}
         </label>
-        <select id="t-plan" name="plan" className="field" defaultValue="professional">
-          {plans.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name[locale]}
-            </option>
-          ))}
-        </select>
+        <Select
+          id="t-plan"
+          name="plan"
+          value={plan}
+          onChange={setPlan}
+          options={plans.map((p) => ({ value: p.id, label: p.name[locale] }))}
+        />
       </div>
       <div className="sm:col-span-2">
         <label className="label" htmlFor="t-message">
