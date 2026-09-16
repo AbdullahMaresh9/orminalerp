@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit, clientIp, tooManyRequests } from '@/lib/rate-limit';
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Orminal ERP <onboarding@resend.dev>';
 const TEAM = process.env.CONTACT_TO_EMAIL ?? 'orminalerp@gmail.com';
@@ -7,6 +8,11 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://orminal-erp.vercel.app
 
 /** Welcome email for a newly registered partner, plus an internal notification. */
 export async function POST(request: Request) {
+  const limit = rateLimit(`partners:${clientIp(request)}`, 3, 60_000);
+  if (!limit.success) {
+    return tooManyRequests(limit.retryAfter);
+  }
+
   let body: { email?: string; companyName?: string; locale?: string };
   try {
     body = await request.json();

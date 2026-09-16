@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit, clientIp, tooManyRequests } from '@/lib/rate-limit';
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Orminal ERP <onboarding@resend.dev>';
 const TO = process.env.CONTACT_TO_EMAIL ?? 'orminalerp@gmail.com';
@@ -13,6 +14,11 @@ function escapeHtml(value: unknown): string {
 
 /** Contact + trial-request intake. Emails via Resend when RESEND_API_KEY is set. */
 export async function POST(request: Request) {
+  const limit = rateLimit(`contact:${clientIp(request)}`, 5, 60_000);
+  if (!limit.success) {
+    return tooManyRequests(limit.retryAfter);
+  }
+
   let payload: Record<string, unknown>;
   try {
     payload = await request.json();
