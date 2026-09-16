@@ -70,7 +70,7 @@ export function LocaleSwitch({
       {open && (
         <ul
           role="listbox"
-          className="absolute end-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
+          className="absolute start-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border shadow-card"
           style={{ background: 'var(--surface)' }}
         >
           {locales.map((code) => (
