@@ -109,8 +109,8 @@ export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) 
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 text-sky2" />
                   <span>
-                    <span className="block text-xs text-white/60">{dict.contact.visitUs}</span>
-                    {dict.contact.address}
+                    <span className="block text-xs text-white/60">{dict.contact.address}</span>
+                   
                   </span>
                 </li>
               </ul>
