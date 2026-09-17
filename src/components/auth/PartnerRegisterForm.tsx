@@ -316,7 +316,7 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
             <input
               id="password"
               type={showPass ? 'text' : 'password'}
-              dir="ltr"
+              dir={'dir'}
               className={`${inputClass('password')} pe-11`}
               value={values.password}
               onChange={(e) => set('password', e.target.value)}
@@ -340,7 +340,7 @@ export function PartnerRegisterForm({ locale, dict }: { locale: Locale; dict: Di
           <input
             id="confirmPassword"
             type="password"
-            dir="ltr"
+            dir={'dir'}
             className={inputClass('confirmPassword')}
             value={values.confirmPassword}
             onChange={(e) => set('confirmPassword', e.target.value)}
